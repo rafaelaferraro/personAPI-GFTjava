@@ -1,4 +1,4 @@
-package projetojavaGFT.personapi.DTO;
+package projetojavaGFT.personapi.DTO.response;
 
 import lombok.Builder;
 import lombok.Data;
