@@ -6,9 +6,11 @@ import projetojavaGFT.personapi.DTO.Request.PersonDTO;
 import projetojavaGFT.personapi.DTO.response.MessageResponseDTO;
 import projetojavaGFT.personapi.Mapper.PersonMapper;
 import projetojavaGFT.personapi.entity.Person;
+import projetojavaGFT.personapi.exception.PersonNotFoundException;
 import projetojavaGFT.personapi.repository.PersonRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,5 +42,12 @@ public class PersonService {
         return allPeople.stream()
                 .map(personMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException(id));
+
+        return personMapper.toDTO(person);
     }
 }
