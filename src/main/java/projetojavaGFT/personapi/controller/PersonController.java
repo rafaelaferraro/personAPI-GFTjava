@@ -8,6 +8,7 @@ import projetojavaGFT.personapi.DTO.response.MessageResponseDTO;
 import projetojavaGFT.personapi.service.PersonService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -26,4 +27,10 @@ public class PersonController {
 
         return personService.createPerson(personDTO);
     }
+
+    @GetMapping
+    public List<PersonDTO> listAll(){
+      return personService.listAll();
+    }
+
 }

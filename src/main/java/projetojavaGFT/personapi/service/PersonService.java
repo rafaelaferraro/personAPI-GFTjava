@@ -8,6 +8,9 @@ import projetojavaGFT.personapi.Mapper.PersonMapper;
 import projetojavaGFT.personapi.entity.Person;
 import projetojavaGFT.personapi.repository.PersonRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PersonService {
 
@@ -31,4 +34,11 @@ public class PersonService {
                 .build();
     }
 
+
+    public List<PersonDTO> listAll() {
+       List<Person> allPeople  = personRepository.findAll();
+        return allPeople.stream()
+                .map(personMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }
